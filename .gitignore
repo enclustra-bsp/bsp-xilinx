@@ -1,0 +1,8 @@
+*.swp
+*.swo
+buildscripts
+bin
+binaries
+build.log
+out_*
+sources
