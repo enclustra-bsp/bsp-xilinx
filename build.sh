@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 BUILDSCRIPTS_REPOSITORY=https://github.com/enclustra-bsp/enclustra-buildscripts.git
 BUILDSCRIPTS_BRANCH=module
