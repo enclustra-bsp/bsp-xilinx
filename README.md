@@ -5,7 +5,7 @@ It allows the user to choose the desired target, and downloads all the required 
 
 To run the build script a Python interpreter is required. The system is compatible both with Python 2 and Python 3.
 
-Running the build.py script without any arguments starts the Build Environment in GUI mode. At this stage the user is prompted to select the the module model, the base board model, the boot mode and software for later use.
+Running the build.sh script without any arguments starts the Build Environment in GUI mode. At this stage the user is prompted to select the the module model, the base board model, the boot mode and software for later use.
 
 For automating the build process, command line interface is available.
 
@@ -24,7 +24,7 @@ The following arguments are supported:
       --list-devices-raw            list all available devices in a script
                                     friendly way
       -d device, --device device    specify device as follows:
-                                    <family>/<module>/<base_board>/<boot_device>
+                                    <module>/<base_board>/<boot_device>
       -l, --list-targets            list all targets for chosen device
       --list-targets-raw            list all targets for chosen device in a script
                                     friendly way
