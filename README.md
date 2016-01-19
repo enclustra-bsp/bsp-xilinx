@@ -1,13 +1,13 @@
 #Enclustra Build Environment
 
-Enclustra Build Environment is a tool which allows the user to quickly setup and run all of the Enclustra Zynq boards.
-It allows the user to choose the desired target, and downloads all the required binaries like the bitstream and fsbl. It downloads and compiles software such as U-Boot, Linux, and BusyBox based root file system.
+Enclustra Build Environment is a tool which allows the user to quickly set up and run all of the Enclustra modules running a Xilinx® Zynq® device.
+It allows the user to choose the desired target, and downloads all the required binaries, such as the bitstream and FSBL. It also downloads and compiles software such as U-Boot, Linux, and BusyBox based root file system.
 
-To run the build script a Python interpreter is required. The system is compatible both with Python 2 and Python 3.
+To run the build script, a Python interpreter is required - the system is compatible both with Python 2 and Python 3.
 
-Running the build.sh script without any arguments starts the Build Environment in GUI mode. At this stage the user is prompted to select the the module model, the base board model, the boot mode and software for later use.
+Running the build.sh script without any arguments starts the Build Environment in GUI mode; in GUI mode, the user is prompted to select the desired module and base board combination, and the boot mode and software for later use.
 
-For automating the build process, command line interface is available.
+For automating the build process, a command line interface is available.
 
 The following arguments are supported:
 
@@ -43,6 +43,6 @@ The following arguments are supported:
       -v, --version                 print version
 
 
-Please refer to the [user documentation](EBE-User-Documentation.pdf) located inside this repository for more information about the usage of the build system.
+Please refer to the [user documentation](EBE-User-Documentation.pdf) located inside this repository for more information on the usage of the build system.
 
 Copyright (c) 2015, Enclustra GmbH, Switzerland
