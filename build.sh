@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BUILDSCRIPTS_REPOSITORY=https://github.com/enclustra-bsp/enclustra-buildscripts.git
-BUILDSCRIPTS_BRANCH=module_develop
+BUILDSCRIPTS_BRANCH=master
 BUILDSCRIPTS_DIR=buildscripts
 
 if [[ ! -e $BUILDSCRIPTS_DIR ]]; then
