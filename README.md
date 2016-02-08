@@ -43,6 +43,6 @@ The following arguments are supported:
       -v, --version                 print version
 
 
-Please refer to the [user documentation](EBE-User-Documentation.pdf) located inside this repository for more information on the usage of the build system.
+Please refer to the [user documentation](http://enclustra.github.io/ebe-docs/user-doc-xilinx/) for more information on the usage of the build system.
 
 Copyright (c) 2015, Enclustra GmbH, Switzerland
