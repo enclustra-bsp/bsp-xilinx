@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 BUILDSCRIPTS_REPOSITORY=https://github.com/enclustra-bsp/enclustra-buildscripts.git
-BUILDSCRIPTS_BRANCH=master
+BUILDSCRIPTS_RELEASE=v1.4
 BUILDSCRIPTS_DIR=buildscripts
 
 if [[ ! -e $BUILDSCRIPTS_DIR ]]; then
   # Will attempt to clone buildscripts repository...
-  git clone $BUILDSCRIPTS_REPOSITORY $BUILDSCRIPTS_DIR -b $BUILDSCRIPTS_BRANCH &> /dev/null
+  git clone $BUILDSCRIPTS_REPOSITORY $BUILDSCRIPTS_DIR -b $BUILDSCRIPTS_RELEASE &> /dev/null
   if [[ ! $? -eq 0 ]]; then
     echo "Could not clone buildscripts repository."
     exit 1
@@ -26,4 +26,4 @@ pushd $BUILDSCRIPTS_DIR &> /dev/null
 git pull &> /dev/null
 popd &> /dev/null
 
-./buildscripts/build.py $@
+./buildscripts/build.py --release $BUILDSCRIPTS_RELEASE $@
