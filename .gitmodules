@@ -1,0 +1,15 @@
+[submodule "sources/buildroot-rootfs"]
+	path = sources/buildroot-rootfs
+	url = ../busybox-rootfs
+[submodule "sources/xilinx-linux"]
+	path = sources/xilinx-linux
+	url = ../xilinx-linux
+[submodule "sources/xilinx-uboot"]
+	path = sources/xilinx-uboot
+	url = ../xilinx-uboot
+[submodule "sources/xilinx-linux-rt"]
+	path = sources/xilinx-linux-rt
+	url = ../xilinx-linux
+[submodule "buildscripts"]
+	path = buildscripts
+	url = ../enclustra-buildscripts
