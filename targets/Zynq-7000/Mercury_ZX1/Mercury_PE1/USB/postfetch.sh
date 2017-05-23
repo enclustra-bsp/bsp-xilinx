@@ -1,1 +1,0 @@
-../postfetch.sh
