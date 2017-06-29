@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BUILDSCRIPTS_RELEASE=v1.5
+EBE_DEFAULT_RELEASE=v1.5
 BUILDSCRIPTS_DIR=buildscripts
 
 # Will attempt to clone buildscripts repository...
@@ -13,9 +13,11 @@ if ! [[ -e "$BUILDSCRIPTS_DIR/.git" ]]; then
   done
 fi
 
+[[ $EBE_RELEASE ]] || EBE_RELEASE=$EBE_DEFAULT_RELEASE
+
 pushd $BUILDSCRIPTS_DIR &> /dev/null
-git checkout $BUILDSCRIPTS_RELEASE &> /dev/null
+git checkout $EBE_RELEASE &> /dev/null
 git pull &> /dev/null
 popd &> /dev/null
 
-./buildscripts/build.py --release $BUILDSCRIPTS_RELEASE $@
+./buildscripts/build.py --release $EBE_RELEASE $@
