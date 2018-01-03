@@ -1,6 +1,6 @@
-#Enclustra Build Environment
+# Enclustra Build Environment
 
-Enclustra Build Environment is a tool which allows the user to quickly set up and run all of the Enclustra modules running a Xilinx® Zynq® device.
+Enclustra Build Environment is a tool which allows the user to quickly set up and run all of the Enclustra modules running a Xilinx Zynq device.
 It allows the user to choose the desired target, and downloads all the required binaries, such as the bitstream and FSBL. It also downloads and compiles software such as U-Boot, Linux, and Buildroot based root file system.
 
 To run the build script, a Python interpreter is required - the system is compatible both with Python 2 and Python 3.
