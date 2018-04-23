@@ -45,4 +45,4 @@ The following arguments are supported:
 
 Please refer to the [user documentation](http://enclustra.github.io/ebe-docs/user-doc-xilinx/) for more information on the usage of the build system.
 
-Copyright (c) 2015-2017, Enclustra GmbH, Switzerland
+Copyright (c) 2015-2018, Enclustra GmbH, Switzerland
