@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.6.1 (2018-05-30)
+------------------------
+
+* U-Boot fixes, including:
+    - wrong MAC address programmed to EEPROM on some modules
+
 Version 1.6 (2018-03-21)
 ------------------------
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-EBE_DEFAULT_RELEASE=v1.6
+EBE_DEFAULT_RELEASE=v1.6.1
 BUILDSCRIPTS_DIR=buildscripts
 
 # Will attempt to clone buildscripts repository...
