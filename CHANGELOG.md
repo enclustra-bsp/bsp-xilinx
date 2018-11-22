@@ -1,6 +1,38 @@
 Change Log
 ==========
 
+Version 1.7 (2018-11-22)
+---------------------
+
+* bumped Linux kernel version to 4.14
+* bumped U-Boot version to V2018.01
+* bumped Buildroot version to V2018.05.1
+* bumped GCC version to 7.2.0
+* bumped mkbootimage version to 2.2
+* upgraded Vivado binaries version to 2018.2 (compatible with this kernel version)
+* updated ATF binaries for Zynq Ultrascale+ devices
+* added new sections to the documentation:
+    - "Updating Binaries"
+    - "QSPI Flash using full image"
+* updated the build script help message documentation
+* new Cosmos XZQ10 boot modes support:
+    - USB
+    - NET
+* added Mercury XU5 to the Ultrascale+ family, available variants:
+    - ZU2EG, Industrial Temperature, Speed Grade 1
+    - ZU3EG, Industrial Temperature, Speed Grade 2
+    - ZU4EV, Industrial Temperature, Speed Grade 1
+    - ZU5EV, Industrial Temperature, Speed Grade 2
+    - ZU5EV, Extended Temperature, Speed Grade 3
+* new Cosmos XZQ10 variants support:
+    - Zynq-7030 Industrial Grade, Speed 2
+    - Zynq-7045 Industrial Grade, Speed 2
+* new Mars XU3 variant support:
+    - ZU2EG, Industrial Temperature, Speed Grade 1
+* removed Mars XU3 variant support:
+    - ZU3EG ES, Extended Temperature, Speed Grade 1
+* minor bug fixes
+
 Version 1.6.1 (2018-05-30)
 ------------------------
 
