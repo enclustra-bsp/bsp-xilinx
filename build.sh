@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [[ "$(pwd)" = *" "* ]]
+then
+	echo -e "\033[0;31mYour EBE path contains spaces. Move it to a directory without spaces to proceed.\033[0m" 1>&2
+	exit 1
+fi
+
 EBE_DEFAULT_RELEASE=v1.7
 BUILDSCRIPTS_DIR=buildscripts
 
