@@ -1,6 +1,27 @@
 Change Log
 ==========
 
+Version 1.8 (2019-02-22)
+------------------------
+
+* added Mercury+ XU7 to the Zynq Ultrascale+ family, available variants:
+    - ZU6EG, Industrial Temp, Speed 1
+    - ZU9EG, Industrial Temp, Speed 2
+    - ZU15EG, Industrial Temp, Speed 2
+* added Mercury+ XU8 to the Zynq Ultrascale+ family, available variants:
+    - ZU4CG, Extended Temp, Speed 1
+    - ZU5EV, Industrial Temp, Speed 1
+    - ZU7EV, Industrial Temp, Speed 2
+* U-Boot environment is stored on the same device as boot device
+* enabled 8-bit MMC mode for eMMC in U-Boot
+* switched to an I2C driver model in U-Boot
+* U-Boot now uses mainline atsha204a-i2c driver for accessing the EEPROM
+* increased eMMC data transfer up to 100MBps in Linux for Zynq Ultrascale+ devices
+* removed RTLinux targets
+* added new section to the documentation:
+    - "How to enable the eMMC flash on the Mercury+ PE1 base board?"
+* bug fixes
+
 Version 1.7 (2018-11-22)
 ---------------------
 
