@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.8.1 (2019-03-05)
+--------------------------
+
+* minor configuration fix for Mars ZX3 on Mars Starter
+
 Version 1.8 (2019-02-22)
 ------------------------
 
