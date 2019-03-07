@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.8.2 (2019-03-07)
+--------------------------
+
+* minor configuration fixes for Mercury XU5 on Mercury PE1
+
 Version 1.8.1 (2019-03-05)
 --------------------------
 
