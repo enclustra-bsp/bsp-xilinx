@@ -35,7 +35,7 @@
 
 This chapter describes how to prepare the hardware to boot from different boot media, using the binaries generated from the build environment. The boot process differs in its details on different hardware, but in general it covers the following steps:
 
-1. BootRom embedded in a CPU starts execution after reset. It searches through a predefined storages for a next (first) stage boot loader.
+1. The hardcoded BootROM of the SoC searches, depending on the selected boot mode, for a boot image with a FSBL (First Stage Bootloader).
 
 2. First stage boot loader (FSBL, U-Boot SPL) is loaded into On Chip Memory, and executed.
 
@@ -49,14 +49,21 @@ This chapter describes how to prepare the hardware to boot from different boot m
 
 For more detailed information about the boot process on a Xilinx Zynq devices please refer to:
 
-- Xilinx Zynq technical reference guide (chapters 6 and 32).
+- Xilinx Zynq technical reference manual (chapters 6 and 32).
 
 All the guides in this section require the user to build the required files for the chosen device, with the build environment, as described in the previous section. Once the files are built, they can be deployed to the hardware as described in the following sub sections.
 
-> **_Note:_**  Default target output directories are named according to the following directory naming scheme:  
-> `out_<timestamp>_<module>_<board>_<bootmode>.`
+> **_Note:_**  Default target output directories are named according to the following directory naming scheme: out_<timestamp>_<module>_<board>_<bootmode>
 
-As a general note on U-Boot used in all the following guides: U-Boot is using variables from the default environment. Moreover, the boot scripts used by U-Boot also rely on those variables. If the environment was changed and saved earlier, U-Boot will always use these saved environment variables on a fresh boot, even after changing the U-Boot environment.
+As a general note on U-Boot used in all the following guides: U-Boot is using variables from the default environment. Moreover, the boot scripts used by U-Boot also rely on those variables. If the environment was changed and saved earlier, U-Boot will always use these saved environment variables on a fresh boot, even after changing the U-Boot environment. To restore the default environment, run the following command in the U-Boot command line:
+
+```
+env default -a
+```
+
+This will not overwrite the stored environment but will only restore the default one in the current run. To permanently restore the default environment, the `saveenv` command has to be invoked.
+
+> **_Note:_**  A `*** Warning - bad CRC, using default environment` warning message that appears when booting into U-Boot indicates that the default environment will be loaded.
 
 Boot storage | Environment storage | Offset | Size
 --- | --- | --- | ---
@@ -65,15 +72,9 @@ eMMC | eMMC | partition 1 (FAT) | 0x80000
 QSPI/NET/USB | QSPI | 0x3f80000 | 0x80000
 NAND | NAND | ‘ubi-env’ partition | 0x18000
 
-To restore the default environment, run the following command in the U-Boot command line:
 
-```
-env default -a
-```
 
-This will not overwrite the stored environment but will only restore the default one in the current run. To permanently restore the default environment, the saveenv command has to be invoked.
 
-> **_Note:_**  A `*** Warning - bad CRC, using default environment` warning message that appears when booting into U-Boot indicates that the default environment will be loaded.
 
 
 
@@ -86,9 +87,9 @@ In order to deploy images to an SD Card and boot from it, perform the following 
 
 2. Create an ext4 formatted partition (rootfs) as the second one on the SD Card. The size of the partition should be at least 64 MB.
 
-3. Copy boot.bin, the kernel image (uImage for Zynq-7000 or Image for Zynq Ultrascale+), devicetree.dtb and uboot.scr (or uboot_ramdisk.scr file when using RAMDISK, which must be renamed to uboot.scr) from the build environment output directory onto the BOOT partition (FAT formatted). Copy uramdisk to the same partition (only when using RAMDISK).
+3. Copy `boot.bin`, the kernel image (`uImage` for Zynq-7000 or `Image` for Zynq Ultrascale+), `devicetree.dtb` and `uboot.scr` (or `uboot_ramdisk.scr` file when using RAMDISK, which must be renamed to `uboot.scr`) from the build environment output directory onto the BOOT partition (FAT formatted). Copy `uramdisk` to the same partition (only when using RAMDISK).
 
-4. Extract the rootfs.tar archive from the build environment output directory onto the second partition (rootfs, ext4 formatted).
+4. Mount the second (ext4) partition and extract the `rootfs.tar.gz` archive from the build environment output directory onto the second partition (rootfs, ext4 formatted). `tar -xvf  rootfs.tar.gz -C /media/rootfs/`
 
 5. Unmount all partitions mounted from the SD Card.
 
@@ -115,28 +116,12 @@ run sdboot
 
 ### eMMC Flash
 
-1. Prepare a bootable SD card with a ramdisk or persistent rootfs as described in SD Card (MMC).
+1. Prepare a bootable SD card with a ramdisk or persistent rootfs as described in [SD Card (MMC)](./4_Deployment.md#sd-card-mmc).
 
-2. You’ll need the following files from eMMC build: boot.bin, devicetree.dtb, Image (Zynq Ultrascale+ only), uImage (Zynq-7000 only). Additionally, you’ll need uramdisk, uboot_ramdisk.scr when you want to use a ramdisk, and rootfs.tar, uboot.scr to use a persistent rootfs. Copy the files to a TFTP server’s directory to load them later through the network. If you don’t want to use the network connection on the board, copy the files to the emmc directory on the SD card’s rootfs partition instead.
+2. You’ll need the following files from eMMC build: `boot.bin`, `devicetree.dtb`, kernel image (`uImage` for Zynq-7000 or `Image` for Zynq Ultrascale+), `uboot.scr` and `rootfs.tar.gz`. If a ramdisk is used the `uramdisk` is required additionally and instead of `uboot.scr` `uboot_ramdisk.scr` (renamed to `uboot.scr`). Put all these files either in a subfolder on the first partition or in the rootfs on the second partition of the sd card.
 
-3. Boot Linux on the device from the SD Card (ramdisk or persistent rootfs) and login as root.
+3. Boot Linux on the device from the SD Card and login as root.
 
-4. If you’ve put eMMC build files on the SD card, and you’re booting from a ramdisk, mount the SD card’s second partition in /mnt. When booting from a persistent rootfs, the files are already in /emmc. In either case, cd to a directory with the files. In the case of files located on a TFTP server, connect to the network by running dhcpcd eth0 and download the files:
-
-```
-tftp -g -r boot.bin       $SERVER_IP  
-tftp -g -r devicetree.dtb $SERVER_IP  
-tftp -g -r uImage         $SERVER_IP  # Zynq-7000 only  
-tftp -g -r Image          $SERVER_IP  # Zynq Ultrascale+ only  
-
-# For eMMC with persistent rootfs:  
-tftp -g -r rootfs.tar     $SERVER_IP  
-tftp -g -r uboot.scr      $SERVER_IP  
-
-# For eMMC with ramdisk:  
-tftp -g -r uramdisk       $SERVER_IP  
-tftp -g -r uboot_ramdisk.scr -l uboot.scr $SERVER_IP
-```
 
 5. There are two /dev/mmcblkN devices. One of them is the SD card, and the other is the eMMC. To identify the eMMC, look which one has the boot0 partition:
 
@@ -180,151 +165,15 @@ umount /mnt/rootfs
 
 
 
+
 ### QSPI Flash
 
-The QSPI Flash is divided into 6 partitions based on U-Boot environment variables. Those variables are calculated and set automatically, so in most cases there is no need to change them. For more detailed information on partition offsets and sizes, please refer to QSPI Flash Layouts.
+The file `boot_full.bin` or `boot_full_ramdisk.bin` for ramdisk is required for QSPI boot mode. This file contains the boot.bin, kernel image, device-tree, u-boot script and rootfs. Each of these files must be places at a specific offset in the QSPI flash. The `boot_full(_ramdisk).bin` file is already created with the right offsets and only this file needs to be programmed to the QSPI. The tables with the offsets can be found here: [QSPI Flash Layouts](./4_Deployment.md#qspi-flash-layouts)
 
-> **_Note:_**  Since release 1.5, 16MB QSPI Flash memories are no longer supported.
-
-In order to deploy images to QSPI Flash and boot from it, do the following steps:
-
-1. Setup a TFTP server on the host computer.
-
-2. Power on the board and boot to U-Boot (e.g. from a SD Card (MMC)).
-
-3. Connect an Ethernet cable to the device.
-
-4. Connect a serial console to the device (e.g. using PuTTY or picocom).
-
-5. Setup the U-Boot connection parameters (in the U-Boot console):
-
-```
-setenv ipaddr 'xxx.xxx.xxx.xxx'  
-# where xxx.xxx.xxx.xxx is the board address
-setenv serverip 'yyy.yyy.yyy.yyy'  
-# where yyy.yyy.yyy.yyy is the server (host computer) address
-```
-
-6. Copy `boot.bin`, the kernel image (uImage for Zynq-7000 or Image for Zynq Ultrascale+), `devicetree.dtb, uboot.scr` (or `uboot_ramdisk.scr` file which must be renamed to `uboot.scr`) and `rootfs.jffs2` (or uramdisk when using RAMDISK) from the build environment output directory to the TFTP server directory.
-
-7. Set memory pinmux to QSPI Flash:
-
-> **_Note:_**  This step is required only for modules equipped with Zynq-7000 devices.
-
-```
-zx_set_storage QSPI
-```
-
-8. Before accessing the QSPI Flash for the first time, the flash device must be enumerated:
-
-```
-sf probe
-```
-
-9. Update the boot image:
-
-```
-mw.b ${bootimage_loadaddr} 0xFF ${bootimage_size}  
-tftpboot ${bootimage_loadaddr} ${bootimage_image}  
-sf erase ${qspi_bootimage_offset} ${bootimage_size}  
-sf write ${bootimage_loadaddr} ${qspi_bootimage_offset} ${filesize}
-```
-
-10. Update the boot script image:
-
-```
-mw.b ${bootscript_loadaddr} 0xFF ${bootscript_size}  
-tftpboot ${bootscript_loadaddr} ${bootscript_image}  
-sf erase ${qspi_bootscript_offset} ${bootscript_size}  
-sf write ${bootscript_loadaddr} ${qspi_bootscript_offset} ${filesize}
-```
-
-11. Update the Linux kernel:
-
-```
-mw.b ${kernel_loadaddr} 0xFF ${kernel_size}  
-tftpboot ${kernel_loadaddr} ${kernel_image}  
-sf erase ${qspi_kernel_offset} ${kernel_size}  
-sf write ${kernel_loadaddr} ${qspi_kernel_offset} ${filesize}
-```
-
-12. Update the devicetree image:
-
-```
-mw.b ${devicetree_loadaddr} 0xFF ${devicetree_size}  
-tftpboot ${devicetree_loadaddr} ${devicetree_image}  
-sf erase ${qspi_devicetree_offset} ${devicetree_size}  
-sf write ${devicetree_loadaddr} ${qspi_devicetree_offset} ${filesize}
-```
-
-13. Update the rootfs image:
-
-This step depends on the chosen boot device.
-
-If QSPI RAMDISK was selected:
-
-```
-mw.b ${ramdisk_loadaddr} 0xFF ${ramdisk_size}  
-tftpboot ${ramdisk_loadaddr} ${ramdisk_image}  
-sf erase ${qspi_ramdisk_offset} ${ramdisk_size}  
-sf write ${ramdisk_loadaddr} ${qspi_ramdisk_offset} ${filesize}
-```
-
- If QSPI was selected:
-
-```
-mw.b ${jffs2_loadaddr} 0xFF ${jffs2_size}  
-tftpboot ${jffs2_loadaddr} ${jffs2_image}  
-sf erase ${qspi_rootfs_offset} ${jffs2_size}  
-sf write ${jffs2_loadaddr} ${qspi_rootfs_offset} ${filesize}
-```
-
-> **_Note:_**  For Zynq Ultrascale+ modules, QSPI boot mode with persistent rootfs is implemented using the SD card for the rootfs image. A .tar archive is generated for these modules instead of a .jffs2 file. This archive must be extracted to the Linux partition of the SD card. (For more information on how to prepare the boot medium, please refer to the official Xilinx guide.)
-
-
-1. Power off the board.
-2. Configure the board to boot from the QSPI Flash (refer to the board User Manual).
-3. Power on the board.
-4. The board should boot the Linux system.
-
-If one wants to manually trigger booting from the QSPI Flash, the following command has to be invoked from the U-Boot command line:
-
-```
-run qspiboot
-```
-
-> **_Note:_**  Note that step 8 to 12 can be invoked independently.
+The Reference Design of the module describes the different options to program the QSPI flash of each module. The Reference Designs can be found here: [Enclustra Github Reference Designs](https://github.com/enclustra)
 
 
 
-
-
-
-##### QSPI Flash using the full image
-
-1. Copy the boot_full.bin (or boot_full_ramdisk.bin when using RAMDISK, which must be renamed to boot_full.bin) file from the build environment output directory to the TFTP server directory.
-
-   > **_Note:_**  The boot_full.bin file is available only for modules equipped with Zynq-7000 devices.
-
-2. Flash the QSPI memory:
-
-```
-mw.b ${bootfull_loadaddr} 0xFF 0x4000000  
-tftpboot ${bootfull_loadaddr} boot_full.bin  
-sf probe  
-sf erase 0x0 0x4000000  
-sf write ${bootfull_loadaddr} 0x0 ${filesize}
-```
-
-3. Configure the board to boot from the QSPI flash (refer to the board’s User Manual).
-4. Reset the board.
-5. The board should boot the Linux system.
-
-If you want to manually trigger booting from the QSPI flash, the following command has to be invoked from the U-Boot command line:
-
-```
-run qspiboot
-```
 
 
 
@@ -437,7 +286,7 @@ run nandboot
 
 ### USB Drive
 
-The Xilinx family devices cannot boot directly from a USB Drive. The FSBL and the U-Boot have to be started from SD Card (MMC) or QSPI Flash. Please refer to SD Card (MMC) or QSPI Flash in order to boot U-Boot from SD Card or QSPI Flash. When U-Boot is booted it can load and boot the Linux system stored on the USB Drive.
+The Xilinx family devices cannot boot directly from a USB Drive. The FSBL and the U-Boot have to be started from SD Card (MMC) or QSPI Flash. Please refer to [SD Card (MMC)](./4_Deployment.md#sd-card-mmc) or [QSPI Flash](./4_Deployment.md#qspi-flash). When U-Boot is booted it can load and boot the Linux system stored on the USB Drive.
 
 In order to deploy images and boot the Linux system from a USB Drive, perform the following steps:
 

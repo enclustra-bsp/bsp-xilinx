@@ -169,22 +169,19 @@ Environment settings are stored in the enclustra.ini file in the main directory 
 
 ## Supported Devices
 
-Family | Module | Base board | Available targets
+Family | Module | Base boards | Available targets
 --- | --- | --- | ---
 Xilinx | Cosmos XZQ10 | | Linux, U-Boot, Buildroot
-Xilinx | Mars ZX2 | Mars Starter | Linux, U-Boot, Buildroot
-Xilinx | Mars ZX2 | Mars EB1 | Linux, U-Boot, Buildroot
-Xilinx | Mars ZX2 | Mars PM3 | Linux, U-Boot, Buildroot
-Xilinx | Mars ZX3 | Mars Starter | Linux, U-Boot, Buildroot
-Xilinx | Mars ZX3 | Mars EB1 | Linux, U-Boot, Buildroot
-Xilinx | Mars ZX3 | Mars PM3 | Linux, U-Boot, Buildroot
-Xilinx | Mars XU3 | Mars EB1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury ZX1 | Mercury PE1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury ZX5 | Mercury PE1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury+ XU1 | Mercury PE1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury XU5 | Mercury PE1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury+ XU7 | Mercury PE1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury+ XU8 | Mercury PE1 | Linux, U-Boot, Buildroot
+Xilinx | Mars ZX2 | Mars EB1 / PM3 / ST3 | Linux, U-Boot, Buildroot
+Xilinx | Mars ZX3 | Mars EB1 / PM3 / ST3 | Linux, U-Boot, Buildroot
+Xilinx | Mars XU3 | Mars EB1 / ST3 | Linux, U-Boot, Buildroot
+Xilinx | Mercury ZX1 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
+Xilinx | Mercury ZX5 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
+Xilinx | Mercury+ XU1 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
+Xilinx | Mercury XU5 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
+Xilinx | Mercury+ XU7 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
+Xilinx | Mercury+ XU8 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
+Xilinx | Mercury+ XU9 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
 
 > **_Note:_**  Since release 1.7, the ZU3EG ES variant of the Mars XU3 module is no longer supported.
 

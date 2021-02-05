@@ -39,12 +39,12 @@ The build process can be invoked from the command line. All options that are ava
 ./build.sh --help
 
 usage: tool [-h] [--release ver] [-L] [--list-devices-raw] [-d device] [-l]
-    [--list-targets-raw] [-x target] [-f target] [-b target]
-    [--custom-build target steps] [--fetch-history target]
-    [--list-dev-options] [--list-dev-binaries] [-B file path]
-    [--anti-unicorn] [--expert-mode] [-o index] [--generate-project]
-    [--build-project project_file] [--build-project-auto project_file]
-    [-s cfg] [-c] [-C] [-v]
+            [--list-targets-raw] [-x target] [-f target] [-b target]
+            [--custom-build target steps] [--fetch-history target]
+            [--list-dev-options] [--list-dev-binaries] [-B file path]
+            [--anti-unicorn] [--expert-mode] [-o index] [--generate-project]
+            [--build-project project_file] [--build-project-auto project_file]
+            [-s cfg] [-c] [-C] [-v]
 
 Enclustra Build Environment
 
@@ -88,49 +88,87 @@ optional arguments:
   -C, --clean-soft              run clean commands for all specified targets
                                 (if available)
   -v, --version                 print version
-
 ```
 
 
-In order to list all available devices use the following command:
 
-    ./build.sh -L
 
-If the build.sh script is invoked with the -d option, the build environment switches to console mode. This mode requires a valid device specifier in order to locate the device configuration within the targets directory for the specific device, e.g. for the Mars ZX3 module on the Mars PM3 base board in QSPI boot mode, the command would look like this:
+### Build default target for a device
 
-    ./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI
+To list all available devices use the following command, it shows all modules, baseboards and boot modes:
 
-Such a command will fetch and build all the default targets for a selected device. To list all the available targets for a selected device, the user needs to add the -l switch to the command, e.g.:
+```
+./build.sh -L
 
-     ./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -l
+List of available devices:
+Zynq-7000/Cosmos_XZQ10/NET
+Zynq-7000/Cosmos_XZQ10/MMC
+Zynq-7000/Mercury_ZX1/Mercury_PE1/NET
+Zynq-7000/Mercury_ZX1/Mercury_PE1/MMC
+....
+```
 
-The -x option will fetch and build only the selected target, e.g.:
+To build the default targets of one of the listed devices, invike the build.sh script with the `-d` option. This mode requires a valid device specifier in order to locate the device configuration within the targets directory for the specific device, e.g. for the Mars ZX3 module on the Mars PM3 base board in QSPI boot mode, the command would look like this:
 
-    ./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -x Linux
+```
+./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI
+```
 
-That will fetch and build only the Linux target for the selected device.
 
-To only fetch or build a specific target, the user can specify those targets with the -f (fetch) and -b (build) options. It is possible to choose multiple targets, e.g. like this:
+### Select exact device to build
 
-    ./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -f Linux -b Buildroot -x U-Boot
+To build the target for an exact device number (e.g. MA-ZX3-20-2I-D10), use the following command to list all possible device options. It will print out an indexed list of device options.
 
-This will fetch Linux, build Buildroot and fetch/build U-Boot.
+```
+./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -x Linux --list-dev-options
 
-The `--list-dev-options` option will list all the available device options for the chosen device. It can be used like this:
+Available options for Zynq-7000/Mars_ZX3/Mars_PM3/QSPI:
+1. MA-ZX3-20-2I-D10
+2. MA-ZX3-20-1C-D9 (default)
+```
 
-    ./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -x Linux --list-dev-options
+The `-o` option allows the user to choose a device option for the selected device by providing the index of a specific device option.
 
-This will print out an indexed list of device options.
-
-The `-o` option allows the user to choose a device option for the selected device by providing the index of a specific device option, like this:
-
-    ./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -x Linux -o 1
+```
+./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -x Linux -o 1
+```
 
 If no device option is selected, the default one will be used.
 
-To reset the build environment and delete all downloaded code, binaries, tools and built files, the --clean option can be used:
 
-    ./build.sh --clean
+### Select target to build or fetch
+
+To list all the available targets for a selected device, the user needs to add the -l switch to the command, e.g.:
+
+```
+./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -l
+
+Available targets for Zynq-7000/Mars_ZX3/Mars_PM3/QSPI:
+Default targets are marked with an [*]
+U-Boot ()
+Buildroot ()
+Linux ()
+```
+
+The -x option will fetch and build only the selected target. That will fetch and build only the Linux target for the selected device.
+
+```
+./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -x Linux
+```
+
+To only fetch or build a specific target, the user can specify those targets with the -f (fetch) and -b (build) options. It is possible to choose multiple targets. This will fetch Linux, build Buildroot and fetch/build U-Boot.
+
+```
+./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -f Linux -b Buildroot -x U-Boot
+```
+
+
+### Clean environment
+
+To reset the build environment and delete all downloaded code, binaries, tools and built files, the --clean-all option can be used:
+
+    ./build.sh --clean-all
+
 
 
 Last Page: [Graphical User Interface GUI](./2_GUI.md)

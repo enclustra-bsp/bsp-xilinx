@@ -91,7 +91,7 @@ cd bsp-xilinx
 
     ![Choose targets to build](./images/build.png)
 
-12. Choose the exact version of the device (chip type, industrial/commercial grade, speed grade).
+12. Choose the exact  device.
 
     ![Choose device](./images/dev_option_xilinx.png)
 
