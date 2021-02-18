@@ -21,9 +21,4 @@ fi
 
 [[ $EBE_RELEASE ]] || EBE_RELEASE=$EBE_DEFAULT_RELEASE
 
-pushd $BUILDSCRIPTS_DIR &> /dev/null
-git checkout $EBE_RELEASE &> /dev/null
-git pull &> /dev/null
-popd &> /dev/null
-
 ./buildscripts/build.py --release $EBE_RELEASE $@
