@@ -37,7 +37,7 @@
 > `git clone https://github.com/enclustra-bsp/bsp-xilinx.git -b v1.x # where v1.x is the release number (e.g. v1.5)`  
 > In order to use the latest code, switch to develop release:  
 > `git clone https://github.com/enclustra-bsp/bsp-xilinx.git -b develop`  
-> `export EBE_RELEASE=develop`  
+> `export EBE_RELEASE=update`  
 > **_Note:_**  Since software in the develop release uses code which is currently under development the resulting software may be unstable.
 
 
