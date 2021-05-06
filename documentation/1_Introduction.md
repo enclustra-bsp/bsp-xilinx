@@ -67,8 +67,8 @@ To run the build script a Python interpreter is required. The system is compatib
 
 The build environment requires additional software to be installed as listed below:
 
-tool |  comments
---- | --- | ---
+Tool |  Comments
+--- | --- 
 dialog |  Required only in the GUI mode
 make | 
 git | 
@@ -84,13 +84,15 @@ rsync |
 autoconf |  Required to build a buildroot rootfs
 g++ |  Required to build a buildroot rootfs
 gcc | 
+flex | 
+bison |
 
 
 The required packages can be installed with the following commands:
 
 ```
 sudo apt update
-sudo apt install python3 dialog make git mercurial tar unzip curl wget bc libssl-dev patch rsync autoconf g++ gcc
+sudo apt install python3 dialog make git mercurial tar unzip curl wget bc libssl-dev patch rsync autoconf g++ gcc flex bison
 ```
 
 
