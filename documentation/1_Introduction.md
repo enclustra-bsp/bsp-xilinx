@@ -34,7 +34,7 @@
 
 ## Introduction
 
-This is the user documentation for the Enclustra Build Environment project.
+This is the user documentation for the Enclustra Build Environment project. It can be used to create a bootable Linux image for Enclustra's SoC modules. Enclustra also provides reference designs and packages for Petalinux. Both can be found on [https://github.com/enclustra](https://github.com/enclustra) .
 
 ### Version Information
 
@@ -61,45 +61,38 @@ This chapter describes the usage of the build environment. The whole build envir
       
 #### Prerequisites
 
+The supported OS for the build environment are: Ubuntu 16.04 LTS and Ubuntu 18.04 LTS
+
 To run the build script a Python interpreter is required. The system is compatible with both, Python 2 and Python 3.
 
 The build environment requires additional software to be installed as listed below:
 
-tool | minimal version | comments
---- | --- | ---
-dialog | 1.2-20130928 | Required only in the GUI mode
-make | 3.81.8 | 
-git | 1.9.1 | 
-mercurial | 2.8.2 | 
-tar | 1.27.1 | 
-unzip | 6.0 | 
-curl | 7.35.0 | 
-wget | 1.15 | 
-bc | 1.06.95 | 
-libssl-dev | 1.0.0 | 
-patch | 2.7.1 | 
-rsync | 3.1.0 | 
-autoconf | 2.69 | Required to build a buildroot rootfs
-g++ | 4.8.3 | Required to build a buildroot rootfs
-gcc | 4.8.3 | Required to build the Linux kernel, U-Boot and a buildroot rootfs
+Tool |  Comments
+--- | --- 
+dialog |  Required only in the GUI mode
+make | 
+git | 
+mercurial |  
+tar | 
+unzip |  
+curl |  
+wget | 
+bc |  
+libssl-dev |  
+patch | 
+rsync | 
+autoconf |  Required to build a buildroot rootfs
+g++ |  Required to build a buildroot rootfs
+gcc | 
+flex | 
+bison |
 
-For more information on how to install the required packages in the supported systems, please refer to the corresponding subsection (OpenSUSE 42.3, Ubuntu 14.04 LTS).
 
-##### OpenSUSE 42.3
-
-```
-su -
-zypper -n install -yt pattern devel_basis
-zypper -n install -y autoconf bc curl gcc-c++ git glibc-32bit \
-                  mercurial python-dialog unzip wget
-```
-
-##### Ubuntu 14.04 LTS
+The required packages can be installed with the following commands:
 
 ```
 sudo apt update
-sudo apt install -y autoconf bc build-essential curl git mercurial \
-              libc6-i386 python python-dialog unzip wget
+sudo apt install python3 dialog make git mercurial tar unzip curl wget bc libssl-dev patch rsync autoconf g++ gcc flex bison
 ```
 
 
@@ -141,19 +134,6 @@ target_output | Folders generated during the build process, that contain the out
 
 
 
-
-### Repositories Structure
-
-The sources directory is the master git repository with a number of submodules pointing to actual code repositories. During the fetch phase, the build environment synchronizes only the submodules required to build the selected targets.
-
-    .
-    |-- container_git_repository
-    |   |-- target_submodule_1
-    |   |-- target_submodule_2
-    |   |-- target_submodule_3
-
-
-
 ### General Build Environment Configuration
 
 Environment settings are stored in the enclustra.ini file in the main directory of the build environment. Before starting the build script, one may need to adjust the general settings of the build environment by editing this file. One of the most crucial setting is the number of build threads used in a parallel. This parameter is set in the [general] section by changing the nthreads key. Additionally, parameters in the [debug] section allow the user to adjust the logging settings:
@@ -169,19 +149,19 @@ Environment settings are stored in the enclustra.ini file in the main directory 
 
 ## Supported Devices
 
-Family | Module | Base boards | Available targets
---- | --- | --- | ---
-Xilinx | Cosmos XZQ10 | | Linux, U-Boot, Buildroot
-Xilinx | Mars ZX2 | Mars EB1 / PM3 / ST3 | Linux, U-Boot, Buildroot
-Xilinx | Mars ZX3 | Mars EB1 / PM3 / ST3 | Linux, U-Boot, Buildroot
-Xilinx | Mars XU3 | Mars EB1 / ST3 | Linux, U-Boot, Buildroot
-Xilinx | Mercury ZX1 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury ZX5 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury+ XU1 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury XU5 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury+ XU7 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury+ XU8 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
-Xilinx | Mercury+ XU9 | Mercury PE1 / ST1 | Linux, U-Boot, Buildroot
+Family | Module | Base boards
+--- | --- | ---
+Xilinx | Cosmos XZQ10 |
+Xilinx | Mars ZX2 | Mars EB1 / PM3 / ST3
+Xilinx | Mars ZX3 | Mars EB1 / PM3 / ST3
+Xilinx | Mars XU3 | Mars EB1 / ST3
+Xilinx | Mercury ZX1 | Mercury PE1 / ST1
+Xilinx | Mercury ZX5 | Mercury PE1 / ST1
+Xilinx | Mercury+ XU1 | Mercury PE1 / ST1
+Xilinx | Mercury XU5 | Mercury PE1 / ST1
+Xilinx | Mercury+ XU7 | Mercury PE1 / ST1
+Xilinx | Mercury+ XU8 | Mercury PE1 / ST1
+Xilinx | Mercury+ XU9 | Mercury PE1 / ST1
 
 > **_Note:_**  Since release 1.7, the ZU3EG ES variant of the Mars XU3 module is no longer supported.
 

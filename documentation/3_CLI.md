@@ -108,7 +108,7 @@ Zynq-7000/Mercury_ZX1/Mercury_PE1/MMC
 ....
 ```
 
-To build the default targets of one of the listed devices, invike the build.sh script with the `-d` option. This mode requires a valid device specifier in order to locate the device configuration within the targets directory for the specific device, e.g. for the Mars ZX3 module on the Mars PM3 base board in QSPI boot mode, the command would look like this:
+To build the default targets of one of the listed devices, call the build.sh script with the `-d` option. This mode requires a valid device specifier in order to locate the device configuration within the targets directory for the specific device, e.g. for the Mars ZX3 module on the Mars PM3 base board in QSPI boot mode, the command would look like this:
 
 ```
 ./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI

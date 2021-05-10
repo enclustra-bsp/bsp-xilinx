@@ -77,7 +77,7 @@ sf write ${jffs2_loadaddr} ${qspi_rootfs_offset} ${filesize}
 run qspiboot
 ```
 
-Then generate an image cmd.img and put it onto the TFTP server on the host computer like following. Note that on Windows operating systems this needs to be executed in SoC EDS Command Shell. Be sure to use Unix line endings.
+Then generate an image cmd.img and put it onto the TFTP server on the host computer like following.
 
 ```
 mkimage -T script -C none -n "QSPI flash commands" -d cmd.txt cmd.img
@@ -154,51 +154,40 @@ chmod +x flash.sh
 ./flash.sh
 ```
 
-> **_Note:_**  Please refer to the user documentation of the developer tools for more information.
-
 
 
 
 
 ### How to enable the eMMC flash on the Mercury+ PE1 base board?
 
-The eMMC flash equipped on the Mercury+ PE1 base board is connected via a multiplexer to the SDIO pins on the module connector. The multiplexer connects either the eMMC flash signals or the SD card signals to the module connector pins and is controlled by a DIP switch (CFG A 3). When the CFG A 3 switch is ON, the eMMC flash is active, otherwise the SD card. For more information about the eMMC flash, please refer to Mercury+ PE1 User Manual. U-Boot by default is configured to recognize a SD card on the PE1 base board. If you want use eMMC flash instead of SD card, you have to make the following change in the uboot devicetree corresponding to your module.
+The eMMC flash equipped on the Mercury+ PE1 base board is connected via a multiplexer to the SDIO pins on the module connector. The multiplexer connects either the eMMC flash signals or the SD card signals to the module connector pins and is controlled by a DIP switch (CFG A 3). When the CFG A 3 switch is ON, the eMMC flash is active, otherwise the SD card. For more information about the eMMC flash, please refer to Mercury+ PE1 User Manual. U-Boot by default is configured to recognize a SD card on the PE1 base board. If you want use eMMC flash instead of SD card, you have to make the following change in the uboot devicetree in file .
 
 #### For Zynq Ultrascale+ modules
 
-Inside the sdhci1 block, the following line has to be replaced:
+In file `xilinx-uboot/arch/arm/dts/zynqmp_enclustra_mercury_pe1.dtsi`, replace the following line in the `sdhci1` block:
 
 ```
 &sdhci1 {
-     cd-gpios = <&gpio 45 GPIO_ACTIVE_LOW>; /* PS_MIO45_SDCD# */
+	wp-inverted;
 ```
 
-with this line:
+with this lines:
 
 ```
 &sdhci1 {
-     is_emmc;
+	non-removable;
+	disable-wp;
 ```
 
-For example, if you use the Mercury+ XU7 module, you should make the change in the following file ‘mercury-xu7.dts’, located in the path ‘xilinx-uboot/arch/arm/dts/’ and rebuild the U-boot.
 
 #### For Zynq-7000 modules
 
-Inside the sdhci0 block, the following line has to be replaced:
+In file `xilinx-uboot/arch/arm/dts/zynq_enclustra_mercury_pe1.dtsi`, add the following line in the `sdhci0` block:
 
 ```
 &sdhci0 {
-     cd-gpios = <&gpio0 50 GPIO_ACTIVE_LOW>;
+	non-removable;
 ```
-
-with this line:
-
-```
-&sdhci0 {
-     is_emmc;
-```
-
-For example, if you use the Mercury ZX1 module, you should make the change in the following file ‘zynq-mercury.dts’, located in the path ‘xilinx-uboot/arch/arm/dts/’ and rebuild the U-boot.
 
 > **_Note:_**  Zynq-7000 devices do not support eMMC boot.
 

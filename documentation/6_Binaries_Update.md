@@ -47,9 +47,15 @@ If you want to modify the FPGA design, you can update the binaries in two ways:
 
       - the new *.bit file (if you introduced changes to the FPGA programmable logic (PL)),
 
-      - the new *.elf file (if you introduced changes to the processing system (PS) of the FPGA SoC).
+      - the new fsbl.elf file (if you introduced changes to the processing system (PS) of the FPGA SoC),
 
-      	Please note that the *.bit file should be named ‘fpga.bit’ and the *.elf file ‘fsbl.elf’.
+      - the new pmufw.elf file (in case of an XU module and if you introduced changes to the PMU firmware),
+
+      - the new atf.elf file (in case of an XU module and if you introduced changes to the Arm Trusted Firmware),
+
+      - the new boot.bif file (in you introduced changes to the boot.bin format).
+
+      	Please note that with the default boot.bif, the files should be named `fpga.bit`, `fsbl.elf`, `pmufw.elf` and `atf.elf`.
 
    3. Run the Enclustra Build Environment.
 
