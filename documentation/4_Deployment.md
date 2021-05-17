@@ -47,9 +47,7 @@ This chapter describes how to prepare the hardware to boot from different boot m
 
 6. Init application starts the rest of the user space applications - the system is up and running.
 
-For more detailed information about the boot process on a Xilinx Zynq devices please refer to:
-
-- Xilinx Zynq technical reference manual (chapters 6 and 32).
+For more detailed information about the boot process please refer to the technical reference manuals from Xilinx.
 
 All the guides in this section require the user to build the required files for the chosen device, with the build environment, as described in the previous section. Once the files are built, they can be deployed to the hardware as described in the following sub sections.
 
@@ -83,7 +81,7 @@ NAND | NAND | ‘ubi-env’ partition | 0x18000
 
 In order to deploy images to an SD Card and boot from it, perform the following steps as root:
 
-1. Create a FAT formatted BOOT partition as the first one on the SD Card. The size of the partition should be at least 64 MB. (For more information on how to prepare the boot medium, please refer to the official Xilinx guide.)
+1. Create a FAT formatted BOOT partition as the first one on the SD Card. The size of the partition should be at least 64 MB. (For more information on how to prepare the boot medium, please refer to the official [Xilinx guide](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842385/How+to+format+SD+card+for+SD+boot) .)
 
 2. Create an ext4 formatted partition (rootfs) as the second one on the SD Card. The size of the partition should be at least 64 MB.
 
@@ -168,11 +166,11 @@ umount /mnt/rootfs
 
 ### QSPI Flash
 
-The file `boot_full.bin` or `boot_full_ramdisk.bin` for ramdisk is required for QSPI boot mode. This file contains the boot.bin, kernel image, device-tree, u-boot script and rootfs. Each of these files must be places at a specific offset in the QSPI flash. The `boot_full(_ramdisk).bin` file is already created with the right offsets and only this file needs to be programmed to the QSPI. The tables with the offsets can be found here: [QSPI Flash Layouts](./4_Deployment.md#qspi-flash-layouts)
+The file `boot_full.bin` or `boot_full_ramdisk.bin` for ramdisk is required for QSPI boot mode. This file contains the boot.bin, kernel image, device-tree, u-boot script and rootfs. Each of these files must be placed at a specific offset in the QSPI flash. The `boot_full(_ramdisk).bin` file is already created with the right offsets and only this file needs to be programmed to the QSPI. The tables with the offsets can be found here: [QSPI Flash Layouts](./4_Deployment.md#qspi-flash-layouts)
 
 The Reference Design of the module describes the different options to program the QSPI flash of each module. The Reference Designs can be found here: [Enclustra Github Reference Designs](https://github.com/enclustra)
 
-
+> **_Note:_**  The QSPI map offsets and sizes are added to to U-Boot environment during boot. If the command `env default -a` is used, the QSPI maps are no longer in the environment and the system is unable to boot from QSPI. A reboot is required to restore the QSPI maps.
 
 
 
@@ -185,16 +183,15 @@ Enclustra Build Environment does not support direct boot from the NAND Flash mem
 
 Partition | Offset | Size
 --- | --- | ---
-Linux kernel | 0x0 | 0x500000
-Linux Device Tree | 0x500000 | 0x100000
-Bootscript | 0x600000 | 0x100000
-Rootfs | 0x700000 | Rest of the NAND Storage space
+Linux kernel | 0x0 | 0x2000000
+Linux Device Tree | 0x2000000 | 0x100000
+Rootfs | 0x2100000 | 0x1DF00000
 
 > **_Note:_**  Not all Xilinx-based modules come with NAND Flash memory.
 
 In order to deploy images and boot the Linux system from NAND Flash, do the following steps:
 
-1. Setup an TFTP server on the host computer.
+1. Setup TFTP server on the host computer.
 
 2. Power on the board and boot to U-Boot (e.g. from a SD Card (MMC)).
 
@@ -241,17 +238,7 @@ nand erase.part nand-linux
 nand write ${kernel_loadaddr} nand-linux ${filesize}
 ```
 
-11. Update the devicetree image:
-
-```
-mw.b ${devicetree_loadaddr} 0xFF ${devicetree_size}  
-tftpboot ${devicetree_loadaddr} ${devicetree_image}  
-nand device 0  
-nand erase.part nand-device-tree  
-nand write ${devicetree_loadaddr} nand-device-tree ${filesize}
-```
-
-12. Update the rootfs image:
+11. Update the rootfs image:
 
 ```
 mw.b ${ubifs_loadaddr} 0xFF ${ubifs_size}  
@@ -261,7 +248,7 @@ nand erase.part nand-rootfs
 nand write ${ubifs_loadaddr} nand-rootfs ${filesize}
 ```
 
-13. Setup the U-boot environment partition:
+12. Setup the U-boot environment partition:
 
 ```
 nand device 0  
@@ -278,8 +265,6 @@ ubi create uboot-env ${env_size} dynamic
 run nandboot
 ```
 
-> **_Note:_**  Note that step 8 to 11 can be invoked independently.
-
 
 
 
@@ -290,7 +275,7 @@ The Xilinx family devices cannot boot directly from a USB Drive. The FSBL and th
 
 In order to deploy images and boot the Linux system from a USB Drive, perform the following steps:
 
-1. Create a FAT formatted partition as the first partition on the drive. The size of the partition should be at least 64 MiB. (For more information on how to prepare the boot medium, please refer to the official Xilinx guide.)
+1. Create a FAT formatted partition  on the drive. The size of the partition should be at least 64 MiB.
 
 2. Copy the kernel image (uImage for Zynq-7000 or Image for Zynq Ultrascale+), devicetree.dtb, uramdisk and uboot_ramdisk.scr (which must be renamed to uboot.scr) from the build environment output directory to the FAT formatted partition.
 
@@ -313,11 +298,11 @@ run usbboot
 
 The Xilinx family devices cannot boot directly from NFS.
 
-The FSBL and the U-Boot have to be started from SD Card (MMC), with the images generated by the build environment. When U-Boot is booted it can load and boot the Linux system from the host machine via Ethernet. Please refer to NFS Preparation Guide to prepare your system for NFS boot.
+The FSBL and the U-Boot have to be started from SD Card (MMC), with the images generated by the build environment. When U-Boot is booted it can load and boot the Linux system from the host machine via Ethernet. Please refer to [NFS Preparation Guide](./4_Deployment.md#nfs-prepatration-guide) to prepare your system for NFS boot.
 
 In order to deploy images and boot the Linux system over NFS, do the following steps as root:
 
-1. Create a FAT formatted BOOT partition as the first one on the SD Card. The size of the partition should be at least 64 MB. (For more information on how to prepare the boot medium, please refer to the official Xilinx guide.)
+1. Create a FAT formatted BOOT partition as the first one on the SD Card. The size of the partition should be at least 64 MB. (For more information on how to prepare the boot medium, please refer to the official [Xilinx guide](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842385/How+to+format+SD+card+for+SD+boot) .)
 
 2. Copy boot.bin and uboot.scr from the build environment output directory onto the BOOT partition.
 
@@ -345,13 +330,14 @@ setenv serverpath /path/to/NFS
 saveenv
 ```
 
+> **_Note:_**  Saving the U-Boot environment this way will ensure that NFS boot runs automatically after reboot.
+
 9. Trigger NFS boot with:
 
 ```
 run netboot
 ```
 
-> **_Note:_**  Saving the U-Boot environment this way will ensure that NFS boot runs automatically after reboot.
 
 
 
@@ -448,7 +434,7 @@ After configuring your system, you can now deploy the new boot images to your TF
 
 ### QSPI Flash Layouts
 
-The QSPI flash layout depends on the version of the Zynq chip that is present in the module.
+The QSPI flash layout depends on the device equipped on the module.
 
 #### Xilinx Zynq-7010/7015/7020 Family QSPI Flash Layout
 
