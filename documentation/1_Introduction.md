@@ -40,15 +40,16 @@ This is the user documentation for the Enclustra Build Environment project. It c
 
 Date | Rev | Author | Changes
 --- | --- | --- | --- 
-2015-05-08 | 0.1.0 | Karol Gugala | Buildsystem description
-2015-05-11 | 0.1.1 | Aleksandra Szawara | Language check
-2015-07-06 | 0.1.2 | Aurelio Lucchesi | Minor corrections
-2015-11-20 | 0.1.3 | Tomasz Gorochowik | Major reorganization
-2016-06-21 | 0.1.4 | Tomasz Gorochowik | Project mode section
-2017-06-23 | 0.1.5 | Maciej Mikunda | Updates for release v1.5
-2018-03-21 | 0.1.6 | Mariusz Glebocki | Updates for release v1.6
-2018-11-22 | 0.1.7 | Wojciech Tatarski | Updates for release v1.7
-2019-02-22 | 0.1.8 | Joanna Brozek | Updates for release v1.8
+2015-05-08 | 1.0 | Karol Gugala | Buildsystem description
+2015-05-11 | 1.1 | Aleksandra Szawara | Language check
+2015-07-06 | 1.2 | Aurelio Lucchesi | Minor corrections
+2015-11-20 | 1.3 | Tomasz Gorochowik | Major reorganization
+2016-06-21 | 1.4 | Tomasz Gorochowik | Project mode section
+2017-06-23 | 1.5 | Maciej Mikunda | Updates for release v1.5
+2018-03-21 | 1.6 | Mariusz Glebocki | Updates for release v1.6
+2018-11-22 | 1.7 | Wojciech Tatarski | Updates for release v1.7
+2019-02-22 | 1.8 | Joanna Brozek | Updates for release v1.8
+2021-06-14 | 1.9 | Tobias Vögeli | Update for Xilinx tool version 2020.1
 
 
 
