@@ -28,6 +28,7 @@
     - [How to script U-Boot?](./7_FAQ.md#how-to-script-u-boot)
     - [How can the flash memory be programmed from Linux?](./7_FAQ.md#how-can-the-flash-memory-be-programmed-from-linux)
     - [How to enable the eMMC flash on the Mercury+ PE1 base board?](./7_FAQ.md#how-to-enable-the-emmc-flash-on-the-mercury-pe1-base-board)
+* [Known Issues](./8_Known_Issues.md)
 
 
 
@@ -193,3 +194,5 @@ In file `xilinx-uboot/arch/arm/dts/zynq_enclustra_mercury_pe1.dtsi`, add the fol
 
 
 Last Page: [Updating the binaries](./6_Binaries_Update.md)
+
+Next Page: [Known issues](./8_Known_Issues.md)
