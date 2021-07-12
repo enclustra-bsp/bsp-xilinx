@@ -33,16 +33,6 @@
 
 ## Graphical User Interface GUI
 
-> **_Note:_**  By default the build script will fetch and build the latest EBE release. To use a specific release you need to clone a clean copy of the EBE repo and switch to a selected release:  
-> `git clone https://github.com/enclustra-bsp/bsp-xilinx.git -b v1.x # where v1.x is the release number (e.g. v1.5)`  
-> In order to use the latest code, switch to develop release:  
-> `git clone https://github.com/enclustra-bsp/bsp-xilinx.git -b develop`  
-> `export EBE_RELEASE=update`  
-> **_Note:_**  Since software in the develop release uses code which is currently under development the resulting software may be unstable.
-
-
-
-
 In order to build the software for a chosen board using the GUI, please follow these steps:
 
 1. Clone the build environment repository with:
@@ -50,6 +40,10 @@ In order to build the software for a chosen board using the GUI, please follow t
 ```
 git clone https://github.com/enclustra-bsp/bsp-xilinx.git
 ```
+
+> **_Note:_**  By default the build script will fetch and build the latest EBE release. With the following command the development branch can be used. Please note that this branch is under development and the resulting software may be unstable.
+> `git clone https://github.com/enclustra-bsp/bsp-xilinx.git -b develop`  
+
 
 2. Change to the bsp-xilinx directory:
 
