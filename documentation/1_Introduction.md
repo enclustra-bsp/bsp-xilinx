@@ -62,7 +62,7 @@ This chapter describes the usage of the build environment. The whole build envir
       
 #### Prerequisites
 
-The supported OS for the build environment are: Ubuntu 16.04 LTS and Ubuntu 18.04 LTS
+The supported OS for the build environment is: Ubuntu 18.04 LTS
 
 To run the build script a Python interpreter is required. The system is compatible with both, Python 2 and Python 3.
 
