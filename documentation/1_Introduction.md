@@ -152,7 +152,6 @@ Environment settings are stored in the enclustra.ini file in the main directory 
 
 Family | Module | Base boards
 --- | --- | ---
-Xilinx | Cosmos XZQ10 |
 Xilinx | Mars ZX2 | Mars EB1 / PM3 / ST3
 Xilinx | Mars ZX3 | Mars EB1 / PM3 / ST3
 Xilinx | Mars XU3 | Mars EB1 / ST3
@@ -160,6 +159,7 @@ Xilinx | Mercury ZX1 | Mercury PE1 / ST1
 Xilinx | Mercury ZX5 | Mercury PE1 / ST1
 Xilinx | Mercury+ XU1 | Mercury PE1 / ST1
 Xilinx | Mercury XU5 | Mercury PE1 / ST1
+Xilinx | Mercury+ XU6 | Mercury PE1 / ST1
 Xilinx | Mercury+ XU7 | Mercury PE1 / ST1
 Xilinx | Mercury+ XU8 | Mercury PE1 / ST1
 Xilinx | Mercury+ XU9 | Mercury PE1 / ST1
