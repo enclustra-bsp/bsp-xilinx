@@ -6,7 +6,7 @@ then
 	exit 1
 fi
 
-EBE_DEFAULT_RELEASE=update
+EBE_DEFAULT_RELEASE=v1.10
 BUILDSCRIPTS_DIR=buildscripts
 
 # Will attempt to clone buildscripts repository...

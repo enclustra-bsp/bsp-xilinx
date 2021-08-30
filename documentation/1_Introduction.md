@@ -50,7 +50,7 @@ Date | Rev | Author | Changes
 2018-11-22 | 1.7 | Wojciech Tatarski | Updates for release v1.7
 2019-02-22 | 1.8 | Joanna Brozek | Updates for release v1.8
 2021-06-14 | 1.9 | Tobias Vögeli | Update for Xilinx tool version 2020.1
-
+2021-08-30 | 1.10 | Arthur Ruder | Update for Xilinx tool version 2020.2
 
 
 
