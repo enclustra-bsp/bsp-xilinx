@@ -155,14 +155,14 @@ Family | Module | Base boards
 Xilinx | Mars ZX2 | Mars EB1 / PM3 / ST3
 Xilinx | Mars ZX3 | Mars EB1 / PM3 / ST3
 Xilinx | Mars XU3 | Mars EB1 / ST3
-Xilinx | Mercury ZX1 | Mercury PE1 / ST1
-Xilinx | Mercury ZX5 | Mercury PE1 / ST1
-Xilinx | Mercury+ XU1 | Mercury PE1 / ST1
-Xilinx | Mercury XU5 | Mercury PE1 / ST1
-Xilinx | Mercury+ XU6 | Mercury PE1 / ST1
-Xilinx | Mercury+ XU7 | Mercury PE1 / ST1
-Xilinx | Mercury+ XU8 | Mercury PE1 / ST1
-Xilinx | Mercury+ XU9 | Mercury PE1 / ST1
+Xilinx | Mercury ZX1 | Mercury PE1 / PE3 / ST1
+Xilinx | Mercury ZX5 | Mercury PE1 / PE3 / ST1
+Xilinx | Mercury+ XU1 | Mercury PE1 / PE3 / ST1
+Xilinx | Mercury XU5 | Mercury PE1 / PE3 / ST1
+Xilinx | Mercury+ XU6 | Mercury PE1 / PE3 / ST1
+Xilinx | Mercury+ XU7 | Mercury PE1 / PE3 / ST1
+Xilinx | Mercury+ XU8 | Mercury PE1 / PE3 / ST1
+Xilinx | Mercury+ XU9 | Mercury PE1 / PE3 / ST1
 
 > **_Note:_**  Since release 1.7, the ZU3EG ES variant of the Mars XU3 module is no longer supported.
 

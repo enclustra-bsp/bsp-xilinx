@@ -7,6 +7,6 @@ Running the build.sh script without any arguments starts the Build Environment i
 
 For automating the build process, a command line interface is available.
 
-Please refer to the [user documentation](https://github.com/enclustra-bsp/bsp-xilinx/blob/develop/documentation/1_Introduction.md) for more information on the usage of the build system.
+Please refer to the [user documentation](documentation/1_Introduction.md) for more information on the usage of the build system.
 
 Copyright (c) 2015-2021, Enclustra GmbH, Switzerland
