@@ -8,7 +8,6 @@
     - [Build Environment](./1_Introduction.md#build-environment)
         - [Prerequisites](./1_Introduction.md#prerequisites)
         - [Directory Structure](./1_Introduction.md#directory-structure)
-        - [Repositories Structure](./1_Introduction.md#repositories-structure)
         - [General Build Environment Configuration](./1_Introduction.md#general-build-environment-configuration)
     - [Supported Devices](./1_Introduction.md#supported-devices)
 * [Graphical User Interface GUI](./2_GUI.md)
