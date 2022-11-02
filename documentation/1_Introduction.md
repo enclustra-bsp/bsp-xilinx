@@ -26,7 +26,6 @@
 * [FAQ](./7_FAQ.md)
     - [How to script U-Boot?](./7_FAQ.md#how-to-script-u-boot)
     - [How can the flash memory be programmed from Linux?](./7_FAQ.md#how-can-the-flash-memory-be-programmed-from-linux)
-    - [How to enable the eMMC flash on the Mercury+ PE1 base board?](./7_FAQ.md#how-to-enable-the-emmc-flash-on-the-mercury-pe1-base-board)
 * [Known Issues](./8_Known_Issues.md)
 
 
@@ -50,6 +49,7 @@ Date | Rev | Author | Changes
 2019-02-22 | 1.8 | Joanna Brozek | Updates for release v1.8
 2021-06-14 | 1.9 | Tobias Vögeli | Update for Xilinx tool version 2020.1
 2021-08-30 | 1.10 | Arthur Ruder | Update for Xilinx tool version 2020.2
+ | 1.10 | Tobias Vögeli | Update for Xilinx tool version 2022.1
 
 
 
@@ -63,7 +63,7 @@ This chapter describes the usage of the build environment. The whole build envir
 
 The supported OS for the build environment is: Ubuntu 18.04 LTS
 
-To run the build script a Python interpreter is required. The system is compatible with both, Python 2 and Python 3.
+To run the build script a Python 3 interpreter is required.
 
 The build environment requires additional software to be installed as listed below:
 

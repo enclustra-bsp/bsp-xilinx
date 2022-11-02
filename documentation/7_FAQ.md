@@ -8,7 +8,6 @@
     - [Build Environment](./1_Introduction.md#build-environment)
         - [Prerequisites](./1_Introduction.md#prerequisites)
         - [Directory Structure](./1_Introduction.md#directory-structure)
-        - [Repositories Structure](./1_Introduction.md#repositories-structure)
         - [General Build Environment Configuration](./1_Introduction.md#general-build-environment-configuration)
     - [Supported Devices](./1_Introduction.md#supported-devices)
 * [Graphical User Interface GUI](./2_GUI.md)
@@ -27,7 +26,6 @@
 * [FAQ](./7_FAQ.md)
     - [How to script U-Boot?](./7_FAQ.md#how-to-script-u-boot)
     - [How can the flash memory be programmed from Linux?](./7_FAQ.md#how-can-the-flash-memory-be-programmed-from-linux)
-    - [How to enable the eMMC flash on the Mercury+ PE1 base board?](./7_FAQ.md#how-to-enable-the-emmc-flash-on-the-mercury-pe1-base-board)
 * [Known Issues](./8_Known_Issues.md)
 
 
@@ -156,41 +154,6 @@ chmod +x flash.sh
 ```
 
 
-
-
-
-### How to enable the eMMC flash on the Mercury+ PE1 base board?
-
-The eMMC flash equipped on the Mercury+ PE1 base board is connected via a multiplexer to the SDIO pins on the module connector. The multiplexer connects either the eMMC flash signals or the SD card signals to the module connector pins and is controlled by a DIP switch (CFG A 3). When the CFG A 3 switch is ON, the eMMC flash is active, otherwise the SD card. For more information about the eMMC flash, please refer to Mercury+ PE1 User Manual. U-Boot by default is configured to recognize a SD card on the PE1 base board. If you want use eMMC flash instead of SD card, you have to make the following change in the uboot devicetree in file .
-
-#### For Zynq Ultrascale+ modules
-
-In file `xilinx-uboot/arch/arm/dts/zynqmp_enclustra_mercury_pe1.dtsi`, replace the following line in the `sdhci1` block:
-
-```
-&sdhci1 {
-	wp-inverted;
-```
-
-with this lines:
-
-```
-&sdhci1 {
-	non-removable;
-	disable-wp;
-```
-
-
-#### For Zynq-7000 modules
-
-In file `xilinx-uboot/arch/arm/dts/zynq_enclustra_mercury_pe1.dtsi`, add the following line in the `sdhci0` block:
-
-```
-&sdhci0 {
-	non-removable;
-```
-
-> **_Note:_**  Zynq-7000 devices do not support eMMC boot.
 
 
 Last Page: [Updating the binaries](./6_Binaries_Update.md)
