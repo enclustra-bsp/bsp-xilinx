@@ -17,10 +17,6 @@
     - [eMMC Flash](./4_Deployment.md#emmc-flash)
     - [QSPI Flash](./4_Deployment.md#qspi-flash)
     - [NAND Flash](./4_Deployment.md#nand-flash)
-    - [USB Drive](./4_Deployment.md#usb-drive)
-    - [NFS](./4_Deployment.md#nfs)
-        - [NFS Preparation Guide](./4_Deployment.md#nfs-prepatration-guide)
-    - [QSPI Flash Layouts](./4_Deployment.md#qspi-flash-layouts)
 * [Project mode](./5_Project_Mode.md)
 * [Updating the binaries](./6_Binaries_Update.md)
 * [FAQ](./7_FAQ.md)
@@ -49,7 +45,7 @@ Date | Rev | Author | Changes
 2019-02-22 | 1.8 | Joanna Brozek | Updates for release v1.8
 2021-06-14 | 1.9 | Tobias Vögeli | Update for Xilinx tool version 2020.1
 2021-08-30 | 1.10 | Arthur Ruder | Update for Xilinx tool version 2020.2
- | 1.10 | Tobias Vögeli | Update for Xilinx tool version 2022.1
+ | 1.11 | Tobias Vögeli | Update for Xilinx tool version 2022.1
 
 
 
@@ -61,7 +57,7 @@ This chapter describes the usage of the build environment. The whole build envir
       
 #### Prerequisites
 
-The supported OS for the build environment is: Ubuntu 18.04 LTS
+The supported OS for the build environment is: Ubuntu 20.04 LTS
 
 To run the build script a Python 3 interpreter is required.
 

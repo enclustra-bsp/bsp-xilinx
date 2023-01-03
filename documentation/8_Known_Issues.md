@@ -17,10 +17,6 @@
     - [eMMC Flash](./4_Deployment.md#emmc-flash)
     - [QSPI Flash](./4_Deployment.md#qspi-flash)
     - [NAND Flash](./4_Deployment.md#nand-flash)
-    - [USB Drive](./4_Deployment.md#usb-drive)
-    - [NFS](./4_Deployment.md#nfs)
-        - [NFS Preparation Guide](./4_Deployment.md#nfs-prepatration-guide)
-    - [QSPI Flash Layouts](./4_Deployment.md#qspi-flash-layouts)
 * [Project mode](./5_Project_Mode.md)
 * [Updating the binaries](./6_Binaries_Update.md)
 * [FAQ](./7_FAQ.md)
@@ -38,6 +34,7 @@
 All variants and revisions of following modules are affected:
 - Mercury+ XU1
 - Mercury XU5
+- Mercury+ XU6
 - Mercury+ XU7
 - Mercury+ XU8
 - Mercury+ XU9
