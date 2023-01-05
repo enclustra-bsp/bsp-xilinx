@@ -82,7 +82,7 @@ In order to deploy images to an SD Card and boot from it, perform the following 
 
 3. Copy `boot.bin`, the kernel image (`uImage` for Zynq-7000 or `Image` for Zynq Ultrascale+), `devicetree.dtb` and `uboot.scr` file from the build environment output directory onto the BOOT partition (FAT formatted).
 
-4. Mount the second (ext4) partition and extract the `rootfs.tar.gz` archive from the build environment output directory onto the second partition (rootfs, ext4 formatted). `tar -xvf  rootfs.tar.gz -C /media/rootfs/`
+4. Mount the second (ext4) partition and extract the `rootfs.tar` archive from the build environment output directory onto the second partition (rootfs, ext4 formatted). `tar -xvf  rootfs.tar.gz -C /media/rootfs/`
 
 5. Unmount all partitions mounted from the SD Card.
 
@@ -111,7 +111,7 @@ run sdboot
 
 1. Prepare a bootable SD card with a ramdisk or persistent rootfs as described in [SD Card (MMC)](./4_Deployment.md#sd-card-mmc).
 
-2. You’ll need the following files from eMMC build: `boot.bin`, `devicetree.dtb`, kernel image (`uImage` for Zynq-7000 or `Image` for Zynq Ultrascale+), `uboot.scr` and `rootfs.tar.gz`.  Put all these files either in a subfolder on the first partition or in the rootfs on the second partition of the sd card.
+2. You’ll need the following files from eMMC build: `boot.bin`, `devicetree.dtb`, kernel image (`uImage` for Zynq-7000 or `Image` for Zynq Ultrascale+), `uboot.scr` and `rootfs.tar`.  Put all these files either in a subfolder on the first partition or in the rootfs on the second partition of the sd card.
 
 3. Boot Linux on the device from the SD Card and login as root.
 
