@@ -184,13 +184,13 @@ Enclustra Build Environment does not support direct boot from the NAND Flash mem
 Select a boot mode to boot the FSBL and U-Boot and modify the U-Boot script in order to load the Linux images from NAND.
 
 ```
-run nand_args && nand read ${kernel_loadaddr} nand-linux ${kernel_size} && nand read ${devicetree_loadaddr} nand-device-tree ${devicetree_size} && bootm ${kernel_loadaddr} - ${devicetree_loadaddr}
+run nand_args && nand read ${kernel_loadaddr} nand-linux ${kernel_size} && bootm ${kernel_loadaddr}
 ```
 
 Partition | Offset | Size
 --- | --- | ---
 Linux kernel | 0x0 | 0x2000000
-Linux Device Tree | 0x2000000 | 0x100000
+Bootscript | 0x2000000 | 0x100000
 Rootfs | 0x2100000 | 0x1DF00000
 
 > **_Note:_**  Not all Xilinx-based modules come with NAND Flash memory.
@@ -205,7 +205,7 @@ In order to deploy images and boot the Linux system from NAND Flash, do the foll
 
 4. Connect a serial console to the device (e.g. using PuTTY or picocom).
 
-5. Copy the kernel image (uImage for Zynq-7000 or Image for Zynq Ultrascale+), devicetree.dtb, uboot.scr and rootfs.ubi files from the build environment output directory to the TFTP server directory.
+5. Copy the kernel image (image.ub) and boot script (uboot.scr) files from the build environment output directory to the TFTP server directory.
 
 6. Stop the U-Boot autoboot.
 
@@ -244,28 +244,7 @@ nand erase.part nand-linux
 nand write ${kernel_loadaddr} nand-linux ${filesize}
 ```
 
-11. Update the rootfs image:
-
-```
-mw.b ${ubifs_loadaddr} 0xFF ${ubifs_size}  
-tftpboot ${ubifs_loadaddr} ${ubifs_image}  
-nand device 0  
-nand erase.part nand-rootfs  
-nand write ${ubifs_loadaddr} nand-rootfs ${filesize}
-```
-
-12. Setup the U-boot environment partition:
-
-```
-nand device 0  
-nand erase.part ubi-env  
-ubi part ubi-env  
-ubi create uboot-env ${env_size} dynamic
-```
-
-    > **_Note:_**  This step is required only when you want use the saveenv command to save the U-Boot environment on the NAND device. This can also be done at a later point, when U-Boot is actually run from NAND, but the zx_set_storage NAND command has to be executed beforehand.
-
-14. Trigger NAND Flash boot with:
+11. Trigger NAND Flash boot with:
 
 ```
 run nandboot
