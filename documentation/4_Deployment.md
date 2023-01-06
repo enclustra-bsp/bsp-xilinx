@@ -238,7 +238,7 @@ nand write ${bootscript_loadaddr} nand-bootscript ${filesize}
 
 ```
 mw.b ${kernel_loadaddr} 0xFF ${kernel_size}  
-tftpboot ${kernel_loadaddr} ${kernel_image}  
+tftpboot ${kernel_loadaddr} image.ub  
 nand device 0  
 nand erase.part nand-linux  
 nand write ${kernel_loadaddr} nand-linux ${filesize}
