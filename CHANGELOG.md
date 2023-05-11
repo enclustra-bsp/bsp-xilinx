@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+Version 1.12 (2023-05-11)
+--------------------------
+
+* added Andromeda XZU65 to the Zynq Ultrascale+ family, available variants:
+    - AM-XZU65-7EG-2I-D3E
+    - AM-XZU65-7EV-2I-D3E
+    - AM-XZU65-11EG-2I-D3E
+
 Version 1.11 (2023-01-11)
 --------------------------
 

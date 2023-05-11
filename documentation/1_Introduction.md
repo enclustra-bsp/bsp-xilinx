@@ -46,7 +46,7 @@ Date | Rev | Author | Changes
 2021-06-14 | 1.9 | Tobias Vögeli | Update for Xilinx tool version 2020.1
 2021-08-30 | 1.10 | Arthur Ruder | Update for Xilinx tool version 2020.2
 2023-01-11 | 1.11 | Tobias Vögeli | Update for Xilinx tool version 2022.1
-
+2023-05-11 | 1.12 | Andreas Bürkler | Andromeda XZU65 support added
 
 
 
