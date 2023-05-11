@@ -158,6 +158,7 @@ Xilinx | Mercury+ XU6 | Mercury PE1 / PE3 / ST1
 Xilinx | Mercury+ XU7 | Mercury PE1 / PE3 / ST1
 Xilinx | Mercury+ XU8 | Mercury PE1 / PE3 / ST1
 Xilinx | Mercury+ XU9 | Mercury PE1 / PE3 / ST1
+Xilinx | Andromeda XZU65 | Mercury ST1
 
 > **_Note:_**  Since release 1.7, the ZU3EG ES variant of the Mars XU3 module is no longer supported.
 
