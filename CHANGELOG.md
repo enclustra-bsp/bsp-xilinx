@@ -1,6 +1,20 @@
 Change Log
 ==========
 
+Version 1.13 (2024-01-30)
+--------------------------
+
+* added Mercury XU61 to the Zynq Ultrascale+ family, available variants:
+    - ME-XU61-2CG-1E-D9-NU
+    - ME-XU61-2CG-1I-D9-NU
+    - ME-XU61-2CG-L1I4524-D9-NU
+    - ME-XU61-2EG-1I-D9-NU
+    - ME-XU61-2EG-L1I4524-D9-NU
+    - ME-XU61-2EG-L1I4524-D11
+    - ME-XU61-2EG-L1I4524-D11-NU
+    - ME-XU61-4CG-1E4524-D11
+    - ME-XU61-5CG-1E-D11
+
 Version 1.12 (2023-05-11)
 --------------------------
 

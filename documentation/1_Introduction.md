@@ -47,6 +47,7 @@ Date | Rev | Author | Changes
 2021-08-30 | 1.10 | Arthur Ruder | Update for Xilinx tool version 2020.2
 2023-01-11 | 1.11 | Tobias Vögeli | Update for Xilinx tool version 2022.1
 2023-05-11 | 1.12 | Andreas Bürkler | Andromeda XZU65 support added
+2024-01-30 | 1.13 | Arthur Ruder | Mercury XU61 support added
 
 
 
@@ -155,6 +156,7 @@ Xilinx | Mercury ZX5 | Mercury PE1 / PE3 / ST1
 Xilinx | Mercury+ XU1 | Mercury PE1 / PE3 / ST1
 Xilinx | Mercury XU5 | Mercury PE1 / PE3 / ST1
 Xilinx | Mercury+ XU6 | Mercury PE1 / PE3 / ST1
+Xilinx | Mercury+ XU61 | Mercury PE1 / PE3 / ST1
 Xilinx | Mercury+ XU7 | Mercury PE1 / PE3 / ST1
 Xilinx | Mercury+ XU8 | Mercury PE1 / PE3 / ST1
 Xilinx | Mercury+ XU9 | Mercury PE1 / PE3 / ST1
