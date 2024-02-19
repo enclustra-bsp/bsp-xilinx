@@ -35,6 +35,7 @@ All variants and revisions of following modules are affected:
 - Mercury+ XU1
 - Mercury XU5
 - Mercury+ XU6
+- Mercury+ XU61
 - Mercury+ XU7
 - Mercury+ XU8
 - Mercury+ XU9

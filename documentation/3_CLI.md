@@ -70,7 +70,7 @@ optional arguments:
   --anti-unicorn                disables colored output
   --expert-mode                 expert mode: prepare the environment for
                                 building the whole system manually
-  -o index, --dev-option index  set device option by index, the default one
+  -o name, --dev-option name    set device option by name, the default one
                                 will be used if not specified
   --generate-project            generate project directory instead of a
                                 regular output
@@ -125,7 +125,7 @@ Available options for Zynq-7000/Mars_ZX3/Mars_PM3/QSPI:
 The `-o` option allows the user to choose a device option for the selected device by providing the index of a specific device option.
 
 ```
-./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -x Linux -o 1
+./build.sh -d Zynq-7000/Mars_ZX3/Mars_PM3/QSPI -x Linux -o MA-ZX3-20-2I-D10
 ```
 
 If no device option is selected, the default one will be used.
